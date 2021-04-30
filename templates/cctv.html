@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VirtualCCTV</title>
+  <style>
+
+
+      .container1 {
+        position:relative;
+        top:0; right:0; left:50px;
+        height: 10px;
+      }
+
+      .s11 {
+         position:relative;
+         left: 0x;
+         border: 10px
+      }
+
+      .s12 {
+         position: relative;
+         left: 330px;
+         border:10px
+      }
+     .s13 {
+         position: absolute;
+         left: 780px;
+         border: 10px
+      }
+     .s14 {
+         position: absolute;
+         left: 890px;
+         border: 10px
+      }
+    .s15 {
+         position: absolute;
+         left: 1000px;
+         border: 10px
+      }
+    .s16 {
+         position: absolute;
+         left: 1110px;
+         border: 10px
+      }
+      .container2 {
+        position:absolute;
+        top:50px; right:0; left:50px;
+        height:10px;
+      }
+
+    .s21 {
+         position:absolute;
+         left: 5px;
+         border:0px
+         float:left;
+      }
+
+    .s22 {
+         position:absolute;
+         left: 50px;
+         border: 10px
+
+      }
+
+    .s23 {
+     position: absolute;
+         left: 445px;
+         border: 10px
+      }
+    .s24 {
+         position:absolute;
+         left: 1060px;
+         border: 10px
+
+      }
+    .s25 {
+         position:absolute;
+         left: 1170px;
+         border: 10px
+
+      }
+    .s26 {
+         position:absolute;
+         left: 1280px;
+         border: 10px
+
+      }
+    .s27 {
+         position:absolute;
+         left: 1390px;
+         border: 10px
+
+      }
+
+     .s28 {
+         position:absolute;
+         left: 670px;
+         border: 10px
+
+      }
+
+    </style>
+</head>
+
+<body bgcolor="#f1f1f0">
+<div>
+    <form action="/methodd" method="post">
+    <div class="container1">
+        <span class="s11"> File Path </span>
+        <span class="s12"> Url:Streaming address+port </span>
+        <span class="s13"><input type="submit" value="All Start" style="width: 100px;"></span>
+        <span class="s14"><input type="submit" value="All Stop"  style="width: 100px;"></span>
+        <span class="s15"><input type="submit" value="All Equal" style="width: 100px;"></span>
+        <span class="s16"><input type="submit" value="All Clear" style="width: 100px;"></span>
+        <span class="s28"> <input type="submit" value="정보 넘기기"></span>
+    </div>
+    </br>
+
+    <ul>
+        {% for i in num_list%}
+                    <p>
+                    <span class="s21"> {{i}}th</span>
+                    <span class="s22"> <input type="text" name="File_Path" size=50 value= {{get_value}}></span>
+                    <span class="s23"> <input type="text" name="Url" size=50 value={{get_value}} ></span>
+                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
+                    <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>
+                    <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>
+                    <span class="s27"> <input type="submit" value="Clear" style="width: 100px;"> </span></p></br>
+
+        {% endfor %}
+
+    </ul>
+    </form>
+</div>
+
+
+
+</body>
+</html>
