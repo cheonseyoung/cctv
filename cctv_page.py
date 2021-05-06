@@ -3,12 +3,13 @@ from flask import Flask, render_template, request
 import json
 import protocol
 import datetime
+
 app = Flask(__name__)
 
 n = int(input())
 
 
-## text파일에 저장된 file_path, url 정보를 value 함수를 이용 읽어오기 (마지막에 새롭게 업데이트 된 값들 중 마지막 값)
+## text파일에 저장된 file_path, url 정보를 value 함수를 이용해서 읽어오기 (마지막에 새롭게 업데이트 된 값들 중 마지막 값)
 def value():
     f = open("C:/Users/테스터/Desktop/save.txt", 'r')
     try:
@@ -51,7 +52,7 @@ def methodd(num_list=[]):
         if len(num_list) == n: continue
         num_list += [i]
 
-    # 새롭게 입력된 값 없는 상태에서 '제출하기 버튼'을 눌렀을 때에 개
+    # 새롭게 입력된 값 없는 상태에서 '제출하기 버튼'을 눌렀을 때에
     # text파일에서 맨 나중에 넣은 값들이 file_path와 url칸에 입력되도록 new_file_path_index 와 new_url_index 값을 지정해줌.
     if request.method == 'POST':
         if new_file_path_index=='':
@@ -236,7 +237,8 @@ def methodd(num_list=[]):
 def test():
     ##이전 작업시 맨 마지막으로 저장된 값 txt에서 불러오기을 (txt에 맨 마지막줄 불러오기, 위에 value()함수 참고)
     get_value = value()
-    got_data = {"1":10, "2":9.9}
+    got_data = {"0":0}
+
 
     ##반복되는 입력창 구현 (input text의 이름에 번호를 붙이기 위해 함수로 만들어줌.)
     aa = ''
@@ -249,7 +251,7 @@ def test():
                   <span class="s23"> <input type="text" name="Url''' + str(i) + '"'''' size=50 value=''' + get_value[1] + ''' ></span>
                   <span><input type="hidden" name="list1" size=50 ></span>
                   <span><input type="hidden" name="list2" size=50 ></span>
-                  <span class="s29" id="fps'''+str(i)+'"'''''value =''' + str(data) + '''</span>
+                  <span class="s29" id="fps'''+str(i)+'"'''''value =''' + str(data) + '''></span>
                   <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                   <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                   <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
@@ -261,12 +263,11 @@ def test():
                  <span class="s23"> <input type="text" name="Url''' + str(i) + '"' ''' id='Url' size=50 value=''' + get_value[1] + '''></span>
                   <span><input type="hidden" name="list1" size=50 ></span>
                   <span><input type="hidden" name="list2" size=50 ></span>
-                  <span class="s29"> </span>
+                  <span class="s29" id="fps'''+str(i)+'"'''' value='''+data[str(i-1)]+''''> </span>
                   <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                   <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                   <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
-                  <span class="s27"> <input type="submit" name="Clear''' + str(
-                i) + '"'''' value="Clear" style="width: 100px;"> </span></p></br>'''
+                  <span class="s27"> <input type="submit" name="Clear''' + str(i) + '"'''' value="Clear" style="width: 100px;"> </span></p></br>'''
 
         return a
 
@@ -387,6 +388,11 @@ def test():
     </br>
     <ul>
     ''' + aa + '''
+    setInterval(function(){
+            $("#").text(time_text);
+            time--;},1000);
+
+
 </form>
 </div>
 </body>
