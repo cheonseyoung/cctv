@@ -100,7 +100,7 @@ def methodd(num_list=[]):
                 <span class="s23"> <input type="text" name="Url''' + str(i) + '"' ''' id='Url' size=50 value=''' + c[1] + '''></span>
                  <span><input type="hidden" name="list1" size=50 ></span>
                  <span><input type="hidden" name="list2" size=50 ></span>
-                 <span class="s29"> </span>
+                 <span class="s29" id="fps'''+str(i)+'"'''''> </span>
                  <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                  <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                  <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
@@ -263,7 +263,7 @@ def test():
                  <span class="s23"> <input type="text" name="Url''' + str(i) + '"' ''' id='Url' size=50 value=''' + get_value[1] + '''></span>
                   <span><input type="hidden" name="list1" size=50 ></span>
                   <span><input type="hidden" name="list2" size=50 ></span>
-                  <span class="s29"></span>
+                  <span class="s29" id="fps'''+str(i)+'"'''''></span>
                   <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                   <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                   <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
@@ -281,6 +281,7 @@ def test():
 <head>
     <meta charset="UTF-8">
     <title>VirtualCCTV</title>
+
   <style>
       .container1 {
         position:relative;
