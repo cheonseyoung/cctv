@@ -490,7 +490,7 @@ import asyncio
 # 웹 소켓 모듈을 선언한다.
 import websockets
 import time
-
+import threading
 # ----------------------------------------------------------------------------------------------//
 # Python 웹소켓 서버에 접속에서 프롬프트 상에서 문자열을 입력받아 Python 웹소켓 서버에 전송하고
 # 전송한 문자열에 대한 에코를 리턴 받는다.
@@ -512,10 +512,8 @@ async def connect():
 
             # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
             data = await websocket.recv();
-            f.write('{0}\n'.format(data))
-
-        f.close();
+            print(data)
 
 
-# 비동기로 서버에 접속한다.
+
 asyncio.get_event_loop().run_until_complete(connect())
