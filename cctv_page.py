@@ -87,7 +87,7 @@ def methodd(num_list=[]):
                 <span class="s23"> <input type="text" name="Url''' + str(i) + '"' ''' id='Url' size=50 value=''' + c[1] + '''></span>
                  <span><input type="hidden" name="list1" size=50 ></span>
                  <span><input type="hidden" name="list2" size=50 ></span>
-                 <span class="s29">''' + str(data) + '''</span>
+                 <span class="s29" id="fps'''+str(i)+'"'''''value =''' + str(data) + '''</span>
                  <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                  <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                  <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
@@ -95,10 +95,8 @@ def methodd(num_list=[]):
         except:
 
             a = '''<p><span class="s21">''' + str(i) + '''th</span>
-                <span class="s22"> <input type="text" name="File_Path''' + str(
-                i) + '"' '''id='File_Path' size=50 value=''' + c[0] + '''></span>
-                <span class="s23"> <input type="text" name="Url''' + str(i) + '"' ''' id='Url' size=50 value=''' + c[
-                    1] + '''></span>
+                <span class="s22"> <input type="text" name="File_Path''' + str(i) + '"' '''id='File_Path' size=50 value=''' + c[0] + '''></span>
+                <span class="s23"> <input type="text" name="Url''' + str(i) + '"' ''' id='Url' size=50 value=''' + c[1] + '''></span>
                  <span><input type="hidden" name="list1" size=50 ></span>
                  <span><input type="hidden" name="list2" size=50 ></span>
                  <span class="s29"> </span>
@@ -251,7 +249,7 @@ def test():
                   <span class="s23"> <input type="text" name="Url''' + str(i) + '"'''' size=50 value=''' + get_value[1] + ''' ></span>
                   <span><input type="hidden" name="list1" size=50 ></span>
                   <span><input type="hidden" name="list2" size=50 ></span>
-                  <span class="s29">''' + str(got_data[str(i - 1)]) + '''</span>
+                  <span class="s29" id="fps'''+str(i)+'"'''''value =''' + str(data) + '''</span>
                   <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                   <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                   <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
