@@ -266,8 +266,7 @@ def test():
                   <span class="s24"> <input type="submit" name="File_Open''' + str(i) + '"'''' value="File Open" style="width: 100px;"></span>
                   <span class="s25"> <input type="submit" name="Start''' + str(i) + '"'''' value="Start" style="width: 100px;"></span>
                   <span class="s26"> <input type="submit" name="Stop''' + str(i) + '"'''' value="Stop" style="width: 100px;"></span>
-                  <span class="s27"> <input type="submit" name="Clear''' + str(
-                i) + '"'''' value="Clear" style="width: 100px;"> </span></p></br>'''
+                  <span class="s27"> <input type="submit" name="Clear''' + str(i) + '"'''' value="Clear" style="width: 100px;"> </span></p></br>'''
 
         return a
 

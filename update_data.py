@@ -497,23 +497,32 @@ import threading
 # quit(종료) 문자를 입력받을 때까지 계속 웹소켓 연결되어 있다. quit 문자가 입력되면 접속이 자동으로 끊긴다.
 # Python 웹소켓 서버는 파이참에서 실행중이다.
 # ----------------------------------------------------------------------------------------------//
+# @app.route('/')
+# def a():
+#     print(1)
+#     return '''
+# <!DOCTYPE html>
+# <html lang="en">
+# <head>
+#     <meta charset="UTF-8">
+#     <title>Title</title>
+# </head>
+# <body>
+# <span class="s29">'''+ data +'''</span>
+# </body>
+# </html>
+# '''
 
 async def connect():
+    data=''
 
     # 웹 소켓에 접속을 합니다.
     async with websockets.connect("ws://localhost:9998/websocket") as websocket:
 
-        #입력받은 값을 파일로 저장
-        f = open('C:/Users/테스터/Desktop/data.txt', 'w')
-
-        data=''
-
-        while data!='quit':
-
+        while data != 'quit':
             # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
             data = await websocket.recv();
-            print(data)
+            print(data);
 
-
-
+# 비동기로 서버에 접속한다.
 asyncio.get_event_loop().run_until_complete(connect())
