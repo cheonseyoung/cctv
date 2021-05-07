@@ -512,17 +512,18 @@ import threading
 # </body>
 # </html>
 # '''
+import flask
 
 async def connect():
     data=''
 
     # 웹 소켓에 접속을 합니다.
     async with websockets.connect("ws://localhost:9998/websocket") as websocket:
-
-        while data != 'quit':
-            # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
+         # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
+         while True:
             data = await websocket.recv();
-            print(data);
+            print(data)
+
 
 # 비동기로 서버에 접속한다.
 asyncio.get_event_loop().run_until_complete(connect())
