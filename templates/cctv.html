@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>VirtualCCTV</title>
   <style>
-
-
       .container1 {
         position:relative;
         top:0; right:0; left:50px;
@@ -105,7 +103,6 @@
 
 <body bgcolor="#f1f1f0">
 <div>
-    <form action="/methodd" method="post">
     <div class="container1">
         <span class="s11"> File Path </span>
         <span class="s12"> Url:Streaming address+port </span>
@@ -118,11 +115,11 @@
     </br>
 
     <ul>
-        {% for i in num_list%}
+        {% for i in range(num_list)%}
                     <p>
                     <span class="s21"> {{i}}th</span>
-                    <span class="s22"> <input type="text" name="File_Path" size=50 value= {{get_value}}></span>
-                    <span class="s23"> <input type="text" name="Url" size=50 value={{get_value}} ></span>
+                    <span class="s22"> <input type="text" name="File_Path" size=50 value= {{get_value1}}></span>
+                    <span class="s23"> <input type="text" name="Url" size=50 value={{get_value2}} ></span>
                     <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
                     <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>
                     <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>
@@ -131,10 +128,7 @@
         {% endfor %}
 
     </ul>
-    </form>
 </div>
-
-
 
 </body>
 </html>

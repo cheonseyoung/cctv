@@ -116,12 +116,12 @@
     </br>
 
     <ul>
-        {% for i in num_list%}
+        {% for i in range(num_list) %}
                     <p>
                     <span class="s21"> {{i}}th</span>
                     <form action="/methodd" method="post">
-                    <span class="s22"> <input type="text" name="File_Path" size=50 value= {% if  ></span>
-                    <span class="s23"> <input type="text" name="Url" size=50 value={{get_value2}} ></span>
+                    <span class="s22"> <input type="text" name="File_Path" size=50 value={{get_value1}}></span>
+                    <span class="s23"> <input type="text" name="Url" size=50 {{get_value2}}></span>
                     <span class="s28"> <input type="submit" value="정보 넘기기"></span></form>
                     <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
                     <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>

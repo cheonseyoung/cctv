@@ -522,7 +522,6 @@ async def connect():
          # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
          while True:
             data = await websocket.recv();
-            print(data)
 
 
 # 비동기로 서버에 접속한다.
