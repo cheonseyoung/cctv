@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>VirtualCCTV</title>
   <style>
-
-
       .container1 {
         position:relative;
         top:0; right:0; left:50px;
@@ -95,9 +93,15 @@
 
      .s28 {
          position:absolute;
-         left: 850px;
+         left: 670px;
          border: 10px
 
+      }
+     .s29 {
+         position:absolute;
+         left: 950px;
+         border: 0px
+         float:left;
       }
 
     </style>
@@ -105,6 +109,7 @@
 
 <body bgcolor="#f1f1f0">
 <div>
+    <form action="/methodd" method="post">
     <div class="container1">
         <span class="s11"> File Path </span>
         <span class="s12"> Url:Streaming address+port </span>
@@ -112,29 +117,28 @@
         <span class="s14"><input type="submit" value="All Stop"  style="width: 100px;"></span>
         <span class="s15"><input type="submit" value="All Equal" style="width: 100px;"></span>
         <span class="s16"><input type="submit" value="All Clear" style="width: 100px;"></span>
+        <span class="s28"> <input type="submit" value="정보 넘기기"></span>
+
     </div>
     </br>
 
     <ul>
-        {% for i in range(num_list) %}
+        {% for i in range(1,num_list+1)%}
                     <p>
                     <span class="s21"> {{i}}th</span>
-                    <form action="/methodd" method="post">
-                    <span class="s22"> <input type="text" name="File_Path" size=50 value={{get_value1}}></span>
-                    <span class="s23"> <input type="text" name="Url" size=50 {{get_value2}}></span>
-                    <span class="s28"> <input type="submit" value="정보 넘기기"></span></form>
+                    <span class="s22"> <input type="text" name="File_Path{{i}}" size=50 value="{{arr[i][0]}}"></span>
+                    <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[i][1]}}" ></span>
+                    <span class="s29" id="fps{{i}}"> </span>
                     <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
                     <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>
                     <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>
                     <span class="s27"> <input type="submit" value="Clear" style="width: 100px;"> </span></p></br>
 
         {% endfor %}
+
     </ul>
-
+</form>
 </div>
-
-
 
 </body>
 </html>
-

@@ -513,16 +513,32 @@ import threading
 # </html>
 # '''
 import flask
+#
+# async def connect():
+#     data=''
+#
+#     # 웹 소켓에 접속을 합니다.
+#     async with websockets.connect("ws://localhost:9998/websocket") as websocket:
+#          # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
+#          while True:
+#             data = await websocket.recv();
+#
+#
+# # 비동기로 서버에 접속한다.
+# asyncio.get_event_loop().run_until_complete(connect())
 
-async def connect():
-    data=''
 
-    # 웹 소켓에 접속을 합니다.
-    async with websockets.connect("ws://localhost:9998/websocket") as websocket:
-         # 웹 소켓 서버로 부터 메시지가 오면 콘솔에 출력합니다.
-         while True:
-            data = await websocket.recv();
+############################################################
 
+from socket import SOCK_STREAM, AF_INET, socket
+from flask import Flask, render_template, request
 
-# 비동기로 서버에 접속한다.
-asyncio.get_event_loop().run_until_complete(connect())
+while got_data!=0:
+    time.sleep(1)
+    serverName = 'localhost'
+    serverPort = 12000
+    clientSocket = socket(AF_INET, SOCK_STREAM)
+    clientSocket.connect((serverName, serverPort))
+    got_data = socket.recv(clientSocket)
+    print(got_data)
+
