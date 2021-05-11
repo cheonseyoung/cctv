@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>VirtualCCTV</title>
   <style>
-
-
       .container1 {
         position:relative;
         top:0; right:0; left:50px;
@@ -99,6 +97,12 @@
          border: 10px
 
       }
+     .s29 {
+         position:absolute;
+         left: 950px;
+         border: 0px
+         float:left;
+      }
 
     </style>
 </head>
@@ -118,11 +122,12 @@
     </br>
 
     <ul>
-        {% for i in num_list%}
+        {% for i in range(1,num_list+1)%}
                     <p>
                     <span class="s21"> {{i}}th</span>
-                    <span class="s22"> <input type="text" name="File_Path" size=50 value= {{get_value}}></span>
-                    <span class="s23"> <input type="text" name="Url" size=50 value={{get_value}} ></span>
+                    <span class="s22"> <input type="text" name="File_Path{{i}}" size=50 value="{{arr[0]}}"></span>
+                    <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[1]}}"></span>
+                    <span class="s29" id="fps{{i}}"> </span>
                     <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
                     <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>
                     <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>
@@ -131,10 +136,8 @@
         {% endfor %}
 
     </ul>
-    </form>
+</form>
 </div>
-
-
 
 </body>
 </html>
