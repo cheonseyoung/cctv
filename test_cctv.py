@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 import json
 import protocol
 import datetime
+import threading
 
 app = Flask(__name__)
 
@@ -11,6 +12,7 @@ n = int(input())
 
 
 ## text파일에 저장된 file_path, url 정보를 value 함수를 이용 읽어오기 (마지막에 새롭게 업데이트 된 값들 중 마지막 값)
+##############################################################################
 def value():
     f = open("C:/Users/테스터/Desktop/save.txt", 'r')
     try:
@@ -22,6 +24,7 @@ def value():
     return [line[1], line[2][:-1]]
 
 ##submit버튼을 누를시 각 칸에 입력된 값들을 set_value 리스트 저장하고, 이를 화면에 다시에 보여주기 위한 작업.
+##############################################################################
 @app.route('/submit_button', methods=['POST'])
 def methodd(num_list=[]):
     new_file_path = ''
@@ -52,11 +55,16 @@ def methodd(num_list=[]):
 
     return render_template('cctv_submit.html',num=n,arr=arr)
 
-#
+##############################################################################
 @app.route('/')
 def test(numlist=[]):
     arr=value()
     return render_template('cctv.html', num=n,arr=arr)
 
+
+##############################################################################
+
+
 if __name__ == '__main__':
     app.run()
+    threading.Thread(target=socket())
