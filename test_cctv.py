@@ -1,12 +1,10 @@
 from socket import SOCK_STREAM, AF_INET, socket
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO
 import json
 import protocol
 import datetime
 
 app = Flask(__name__)
-socketio=SocketIO
 
 n = int(input())
 
@@ -24,7 +22,7 @@ def value():
     return [line[1], line[2][:-1]]
 
 ##submit버튼을 누를시 각 칸에 입력된 값들을 set_value 리스트 저장하고, 이를 화면에 다시에 보여주기 위한 작업.
-@app.route('/methodd', methods=['POST'])
+@app.route('/submit_button', methods=['POST'])
 def methodd(num_list=[]):
     new_file_path = ''
     new_url = ''
@@ -52,13 +50,13 @@ def methodd(num_list=[]):
             f.write("%s,%s,%s\n" % ('update_file_info', new_file_path, new_url))
 
 
-    return render_template('cctv_submit.html',num_list=n,arr=arr)
+    return render_template('cctv_submit.html',num=n,arr=arr)
 
 #
 @app.route('/')
 def test(numlist=[]):
     arr=value()
-    return render_template('cctv.html', num_list=n,arr=arr)
+    return render_template('cctv.html', num=n,arr=arr)
 
 if __name__ == '__main__':
     app.run()
