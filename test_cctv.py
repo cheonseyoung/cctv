@@ -67,4 +67,3 @@ def test(numlist=[]):
 
 if __name__ == '__main__':
     app.run()
-    threading.Thread(target=socket())

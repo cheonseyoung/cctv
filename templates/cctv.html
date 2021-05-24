@@ -11,13 +11,13 @@
       }
 
       .s11 {
-         position:relative;
+         position:absolute;
          left: 0x;
          border: 10px
       }
 
       .s12 {
-         position: relative;
+         position: absolute;
          left: 330px;
          border:10px
       }
@@ -105,20 +105,51 @@
       }
 
     </style>
+
+
+    <script>
+        // 반복 시작 함수
+        // 시간 출력 함수를 1초마다 실행함
+        function startInterval() {
+            setInterval(printCurrentDate, 1000);
+        }
+
+        // 시간 출력 함수
+        function printCurrentDate() {
+            // all_start라는 아이디를 가진 태그를 가져오고,
+            // 해당 html 태그 안에 Date 객체를 출력함
+            var wSocket = new WebSocket("ws:127.0.0.1:12000");
+              wSocket.onmessage = function(e){  alert(e.data);  }
+
+              wSocket.onopen = function(e){ alert("서버 연결 완료"); }
+              wSocket.onclose = function(e){ alert("서버 연결 종료"); }
+              function send(){ //서버로 데이터를 전송하는 메서드
+              wSocket.send("Hello");}
+
+                {% for i in range(1,num+1)%}
+                    document.getElementById("fps{{i}}").innerHTML = new Date();
+                {% endfor %}
+
+
+        }
+    </script>
+
 </head>
 
 <body bgcolor="#f1f1f0">
 <div>
-    <form action="/submit_button" method="post">
     <div class="container1">
         <span class="s11"> File Path </span>
         <span class="s12"> Url:Streaming address+port </span>
-        <span class="s13"><input type="submit" value="All Start" style="width: 100px;"></span>
+        <span class="s13">
+        <button onclick="startInterval()" style="width: 100px;" > All Start </button> </span>
         <span class="s14"><input type="submit" value="All Stop"  style="width: 100px;"></span>
         <span class="s15"><input type="submit" value="All Equal" style="width: 100px;"></span>
         <span class="s16"><input type="submit" value="All Clear" style="width: 100px;"></span>
-        <span class="s28"> <input type="submit" value="정보 넘기기"></span>
+        <form action="/submit_button" method="post">
+        <span class="s28"> <input type="submit" value="정보 넘기기"></span> </form>
     </div>
+
     </br>
 
     <ul>
@@ -128,15 +159,18 @@
                     <span class="s22"> <input type="text" name="File_Path{{i}}" size=50 value="{{arr[0]}}"></span>
                     <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[1]}}"></span>
                     <span class="s29" id="fps{{i}}"> </span>
-                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
-                    <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>
-                    <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>
+<!--                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>-->
+<!--                    <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>-->
+<!--                    <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>-->
                     <span class="s27"> <input type="submit" value="Clear" style="width: 100px;"> </span></p></br>
 
         {% endfor %}
 
+
     </ul>
-</form>
+    </form>
+
+
 </div>
 
 </body>
