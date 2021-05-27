@@ -38,11 +38,11 @@ def methodd(num_list=[]):
             url = request.form['Url'+str(i)]
             arr+=[[file_path,url]]
 
-
             if file_path!= new_file_path and file_path != get_value[0]:
                 new_file_path = file_path
             if url!= new_url and url != get_value[1]:
                 new_url= url
+        print(arr)
 
         ## txt 파일에 업데이트 내용 저장
         with open("C:/Users/테스터/Desktop/save.txt", "a", encoding='utf-8') as f:

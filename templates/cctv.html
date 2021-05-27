@@ -113,70 +113,6 @@
 
     </style>
 
-    <script>
-        // 반복 시작 함수
-        // 시간 출력 함수를 1초마다 실행함
-        function startInterval() {
-
-                setInterval(printCurrentDate, 1000);
-            }
-
-        // 시간 출력 함수
-        function printCurrentDate() {
-            // all_start라는 아이디를 가진 태그를 가져오고,
-            // 해당 html 태그 안에 Date 객체를 출력함
-
-            // 웹 서버를 접속한다.
-            var webSocket = new WebSocket("ws://127.0.0.1:12000");
-
-                {% for i in range(1,num+1)%}
-<!--                    document.getElementById("fps{{i}}").innerHTML = new Date();-->
-                        var messageTextArea{{i}} = document.getElementById("fps{{i}}");
-                {% endfor %}
-
-            // 웹 서버와의 통신을 주고 받은 결과를 출력할 오브젝트를 가져옵니다.
-
-
-            webSocket.onopen = function(message){
-            document.getElementById("connection").innerHTML= "Server connect...\n";
-            };
-            // 소켓 접속이 끝나면 호출되는 함수
-
-            webSocket.onclose = function(message){
-            document.getElementById("connection").innerHTML= "Server Disconnect...\n";
-            };
-            // 소켓 통신 중에 에러가 발생되면 호출되는 함수
-
-            webSocket.onerror = function(message){
-            document.getElementById("connection").innerHTML= "error...\n";
-            };
-            // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
-
-            webSocket.onmessage = function(message){
-            // 출력 area에 메시지를 표시한다.
-
-            document.getElementById("fps1").innerHTML = message.data
-            };
-
-<!--            // 서버로 메시지를 전송하는 함수-->
-<!--            function sendMessage(){-->
-<!--            var message = document.getElementById("fps{{i}}");-->
-<!--            messageTextArea1.value += "Send to Server => "+message.value+"\n";-->
-<!--            //웹소켓으로 textMessage객체의 값을 보낸다.-->
-<!--            webSocket.send(message.value);-->
-<!--            //textMessage객체의 값 초기화-->
-<!--            message.value = "";-->
-<!--            }-->
-            function disconnect(){
-            webSocket.close();
-            }
-
-
-            }
-
-
-
-    </script>
 
 </head>
 
@@ -213,6 +149,80 @@
 
 
     </ul>
+
+
+    <script>
+        // 반복 시작 함수
+        // 시간 출력 함수를 1초마다 실행함
+        function startInterval() {
+
+                setInterval(printCurrentDate, 1000);
+            }
+
+        // 시간 출력 함수
+        function printCurrentDate() {
+            // all_start라는 아이디를 가진 태그를 가져오고,
+            // 해당 html 태그 안에 Date 객체를 출력함
+
+            // 웹 서버를 접속한다.
+            var webSocket = new WebSocket("ws://127.0.0.1:9998");
+
+
+            // 웹 서버와의 통신을 주고 받은 결과를 출력할 오브젝트를 가져옵니다.
+                {% for i in range(1,num+1)%}
+<!--                    document.getElementById("fps{{i}}").innerHTML = new Date();-->
+<!--                    var messageTextArea{{i}} = document.getElementById("fps{{i}}");-->
+                {% endfor %}
+
+
+            webSocket.onopen = function(message){
+            document.getElementById("connection").innerHTML= "Server connect...\n";
+            };
+
+            // 소켓 접속이 끝나면 호출되는 함수
+
+            webSocket.onclose = function(message){
+            document.getElementById("connection").innerHTML= "Server Disconnect...\n";
+            };
+            // 소켓 통신 중에 에러가 발생되면 호출되는 함수
+
+            webSocket.onerror = function(message){
+            document.getElementById("connection").innerHTML= "error...\n";
+            };
+            // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
+
+            webSocket.onmessage = function(message){
+            // 출력 area에 메시지를 표시한다.
+            document.getElementById("fps1") = message.data
+            };
+
+            // 서버로 메시지를 전송하는 함수
+            a= function sendMessage(){
+                var message = document.getElementById("fps1");
+<!--                messageTextArea.value += "Send to Server => "+message.value+"\n";-->
+
+                //웹소켓으로 textMessage객체의 값을 보낸다.
+                webSocket.send("time");
+
+
+                //textMessage객체의 값 초기화
+<!--                message.value = "";-->
+
+
+            }
+
+            a();
+            delete a;
+
+
+            function disconnect(){
+            webSocket.close();
+            }
+
+
+            }
+
+    </script>
     </form>
 
 
