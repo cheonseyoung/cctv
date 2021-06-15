@@ -27,6 +27,7 @@ def value():
 ##############################################################################
 @app.route('/submit_button', methods=['POST'])
 def methodd(num_list=[]):
+    print('11111')
     new_file_path = ''
     new_url = ''
 
@@ -42,7 +43,6 @@ def methodd(num_list=[]):
                 new_file_path = file_path
             if url!= new_url and url != get_value[1]:
                 new_url= url
-        print(arr)
 
         ## txt 파일에 업데이트 내용 저장
         with open("C:/Users/테스터/Desktop/save.txt", "a", encoding='utf-8') as f:
@@ -59,7 +59,7 @@ def methodd(num_list=[]):
 @app.route('/')
 def test(numlist=[]):
     arr=value()
-    return render_template('cctv.html', num=n,arr=arr)
+    return render_template('test.html', num=n,arr=arr)
 
 
 ##############################################################################

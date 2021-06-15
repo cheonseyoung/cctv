@@ -123,11 +123,11 @@
         <span class="s12"> Url:Streaming address+port </span>
         <span class="s13">
         <button onclick="startInterval()" style="width: 100px;" > All Start </button> </span>
-        <span class="s14"><input type="submit" value="All Stop"  style="width: 100px;"></span>
-        <span class="s15"><input type="submit" value="All Equal" style="width: 100px;"></span>
-        <span class="s16"><input type="submit" value="All Clear" style="width: 100px;"></span>
+        <span class="s14"><input type="button" value="All Stop"  style="width: 100px;"></span>
+        <span class="s15"><input type="button" value="All Equal" style="width: 100px;"></span>
+        <span class="s16"><input type="button" value="All Clear" style="width: 100px;"></span>
         <form action="/submit_button" method="post">
-        <span class="s28"> <input type="submit" value="정보 넘기기"></span> </form>
+        <span class="s28"> <input type="submit" value="정보 넘기기"></span>
     </div>
 
     </br>
@@ -140,7 +140,7 @@
                     <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[1]}}"></span>
                     <span class="s30" id="connection" type="text"> </span>
                     <span class="s29" id="fps{{i}}" type="text"> </span>
-<!--                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>-->
+                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
                     <span class="s25"> <input type="submit" value="Start" style="width: 100px;"></span>
                     <span class="s26"> <input type="submit" value="Stop" style="width: 100px;"></span>
                     <span class="s27"> <input type="submit" value="Clear" style="width: 100px;"> </span></p></br>
@@ -150,29 +150,17 @@
 
     </ul>
 
-
     <script>
-        // 반복 시작 함수
-        // 시간 출력 함수를 1초마다 실행함
-        function startInterval() {
-
-                setInterval(printCurrentDate, 1000);
-            }
-
-        // 시간 출력 함수
-        function printCurrentDate() {
-            // all_start라는 아이디를 가진 태그를 가져오고,
-            // 해당 html 태그 안에 Date 객체를 출력함
 
             // 웹 서버를 접속한다.
-            var webSocket = new WebSocket("ws://127.0.0.1:9998");
-
+            var webSocket = new WebSocket("ws://192.168.0.49:12000");
 
             // 웹 서버와의 통신을 주고 받은 결과를 출력할 오브젝트를 가져옵니다.
-                {% for i in range(1,num+1)%}
+<!--                {% for i in range(1,num+1)%}-->
 <!--                    document.getElementById("fps{{i}}").innerHTML = new Date();-->
 <!--                    var messageTextArea{{i}} = document.getElementById("fps{{i}}");-->
-                {% endfor %}
+<!--                {% endfor %}-->
+
 
 
             webSocket.onopen = function(message){
@@ -191,36 +179,24 @@
             };
             // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
 
-            webSocket.onmessage = function(message){
-            // 출력 area에 메시지를 표시한다.
-            document.getElementById("fps1") = message.data
-            };
-
-            // 서버로 메시지를 전송하는 함수
-            a= function sendMessage(){
-                var message = document.getElementById("fps1");
-<!--                messageTextArea.value += "Send to Server => "+message.value+"\n";-->
-
-                //웹소켓으로 textMessage객체의 값을 보낸다.
-                webSocket.send("time");
-
-
-                //textMessage객체의 값 초기화
-<!--                message.value = "";-->
-
-
+            function startInterval() {
+                setInterval(websocket.onmessage, 1000);
             }
 
-            a();
-            delete a;
+
+
+            webSocket.onmessage = function(message){
+                {% for i in range(1,num+1)%}
+                    document.getElementById("fps{{i}}").innerHTML = message.data;
+                {% endfor %}
+            };
 
 
             function disconnect(){
             webSocket.close();
-            }
-
 
             }
+
 
     </script>
     </form>

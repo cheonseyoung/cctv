@@ -1,70 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>VirtualCCTV</title>
+  <style>
+      .container1 {
+        position:relative;
+        top:0; right:0; left:50px;
+        height: 10px;
+      }
+
+      .s11 {
+         position:absolute;
+         left: 0x;
+         border: 10px
+      }
+
+      .s12 {
+         position: absolute;
+         left: 330px;
+         border:10px
+      }
+     .s13 {
+         position: absolute;
+         left: 780px;
+         border: 10px
+      }
+     .s14 {
+         position: absolute;
+         left: 890px;
+         border: 10px
+      }
+    .s15 {
+         position: absolute;
+         left: 1000px;
+         border: 10px
+      }
+    .s16 {
+         position: absolute;
+         left: 1110px;
+         border: 10px
+      }
+      .container2 {
+        position:absolute;
+        top:50px; right:0; left:50px;
+        height:10px;
+      }
+
+    .s21 {
+         position:absolute;
+         left: 5px;
+         border:0px
+         float:left;
+      }
+
+    .s22 {
+         position:absolute;
+         left: 50px;
+         border: 10px
+
+      }
+
+    .s23 {
+     position: absolute;
+         left: 445px;
+         border: 10px
+      }
+    .s24 {
+         position:absolute;
+         left: 1060px;
+         border: 10px
+
+      }
+    .s25 {
+         position:absolute;
+         left: 1170px;
+         border: 10px
+
+      }
+    .s26 {
+         position:absolute;
+         left: 1280px;
+         border: 10px
+
+      }
+    .s27 {
+         position:absolute;
+         left: 1390px;
+         border: 10px
+
+      }
+
+     .s28 {
+         position:absolute;
+         left: 670px;
+         border: 10px
+
+      }
+     .s29 {
+         position:absolute;
+         left: 950px;
+         border: 0px
+         float:left;
+      }
+
+     .s30 {
+         position:absolute;
+         left: 850px;
+         border: 0px
+         float:left;
+      }
+
+    </style>
+
+
 </head>
-<body>
-<form>
-<!-- 서버로 메시지를 보낼 텍스트 박스 -->
-<input id="textMessage" type="text">
-<!-- 전송 버튼 -->
-<input onclick="sendMessage()" value="Send" type="button">
-<!-- 접속 종료 버튼 -->
-<input onclick="disconnect()" value="Disconnect" type="button">
-</form>
-<br />
-<!-- 출력 area -->
-<textarea id="messageTextArea" rows="10" cols="50"></textarea>
 
-<script type="text/javascript">
+<body bgcolor="#f1f1f0">
+<div>
+    <div class="container1">
+        <span class="s11"> File Path </span>
+        <span class="s12"> Url:Streaming address+port </span>
+        <span class="s13">
+        <button onclick="startInterval()" style="width: 100px;" > All Start </button> </span>
+        <span class="s14"><input type="button" value="All Stop"  style="width: 100px;"></span>
+        <span class="s15"><input type="button" value="All Equal" style="width: 100px;"></span>
+        <span class="s16"><input type="button" value="All Clear" style="width: 100px;"></span>
+        <form action="/submit_button" method="post">
+        <span class="s28"> <input type="submit" value="정보 넘기기"></span>  </form>
+    </div>
 
-// 웹 서버를 접속한다.
-var webSocket = new WebSocket("ws://localhost:9998");
+    </br>
 
-// 웹 서버와의 통신을 주고 받은 결과를 출력할 오브젝트를 가져옵니다.
-var messageTextArea = document.getElementById("messageTextArea");
-
-// 소켓 접속이 되면 호출되는 함수
-webSocket.onopen = function(message){
-messageTextArea.value += "Server connect...\n";
-
-};
-
-// 소켓 접속이 끝나면 호출되는 함수
-webSocket.onclose = function(message){
-messageTextArea.value += "Server Disconnect...\n";
-};
-
-// 소켓 통신 중에 에러가 발생되면 호출되는 함수
-webSocket.onerror = function(message){
-messageTextArea.value += "error...\n";
-};
-
-// 소켓 서버로 부터 메시지가 오면 호출되는 함수.
-webSocket.onmessage = function(message){
-// 출력 area에 메시지를 표시한다.
-messageTextArea.value += "Recieve From Server => "+message.data+"\n";
-};
+    <ul>
+        {% for i in range(1,num+1)%}
+                    <p>
+                    <span class="s21"> {{i}}th</span>
+                    <span class="s22"> <input type="text" name="File_Path{{i}}" size=50 value="{{arr[0]}}"></span>
+                    <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[1]}}"></span>
+                    <span class="s29" id="fps{{i}}" type="text"> </span>
+                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
+                    <span class="s25"> <button onclick="start{{i}}()" style="width: 100px;" id="start{{i}}"> Start </button> </span></span>
+                    <span class="s26"> <button onclick="stop{{i}}()" style="width: 100px;" id="stop{{i}}"> Stop</button> </span>
+                    <span class="s27"> <button onclick="clear{{i}}()" style="width: 100px;" id="clear{{i}}"> Clear</button> </span></p></br>
 
 
-// 서버로 메시지를 전송하는 함수
-function sendMessage(){
-	var message = document.getElementById("textMessage");
-	messageTextArea.value += "Send to Server => "+message.value+"\n";
+            <script>
 
-	//웹소켓으로 textMessage객체의 값을 보낸다.
-	webSocket.send("time");
+            // 웹 서버를 접속한다.
+            var webSocket{{i}} = new WebSocket("ws://192.168.0.49:12000");
 
-	//textMessage객체의 값 초기화
-	message.value = "";
-}
+            function start{{i}}() {
+            // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
+                setInterval(webSocket{{i}}.onmessage, 1000);
 
-function disconnect(){
-webSocket.close();
-}
+                webSocket{{i}}.onmessage = function(message){
+                document.getElementById("fps{{i}}").innerHTML = message.data;};
+            }
 
-</script>
+            function stop{{i}}(){
+            webSocket{{i}}.close();
+            }
+
+            function clear{{i}}(){
+
+            }
+
+
+
+          </script>
+
+        {% endfor %}
+
+
+
+    </ul>
+
+    </form>
+
+
+</div>
+
 </body>
 </html>
-
