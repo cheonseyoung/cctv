@@ -209,10 +209,10 @@
 
             function allequal{{i}}(){
             {% for i in range(1,num+1)%}
-                var text1 = document.getElementById("File_Path1");
-                var text2 =document.getElementById("Url1");
-                var text1{{i}}=document.getElementById("File_Path{{i}}");
-                var text2{{i}}=document.getElementById("Url{{i}}");
+                var text1 = document.getElementByName("File_Path1");
+                var text2 =document.getElementByName("Url1");
+                var text1{{i}}=document.getElementByName("File_Path{{i}}");
+                var text2{{i}}=document.getElementByName("Url{{i}}");
                 text1{{i}}.value=text1.value;
                 text2{{i}}.value=text2.value;
 
