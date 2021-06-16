@@ -131,7 +131,7 @@
         <span class="s13"> <button onclick="allstart{{i}}()" style="width: 100px;" id="allstart{{i}}">All Start </button> </span>
         <span class="s14"> <button onclick="allstop{{i}}()" style="width: 100px;" id="allstop{{i}}">All Stop </button></span>
         <span class="s15"><button onclick="allequal{{i}}()" style="width: 100px;" id="allequal{{i}}">All Equal </button></span>
-        <span class="s16"><button onclick="allclear{{i}}()" style="width: 100px;" id="allclear{{i}}">All Clear </button></span>
+        <span class="s16"> <button onclick="allclear{{i}}()" style="width: 100px;" id="allclear{{i}}">All Clear </button></span>
         <span class="s28"> <form action="/submit_button" method="post"> <input type="submit" value="정보 넘기기"></span>
 
 
@@ -143,8 +143,8 @@
         {% for i in range(1,num+1)%}
                     <p>
                     <span class="s21"> {{i}}th</span>
-                    <span class="s22"> <input type="text" name="File_Path{{i}}" size=50 value="{{arr[i][0]}}"></span>
-                    <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[i][1]}}"></span></p></br>
+                    <span class="s22"> <input type="text" id="File_Path{{i}}" size=50 value="{{arr[0]}}"></span>
+                    <span class="s23"> <input type="text" id="Url{{i}}" size=50 value="{{arr[1]}}"></span></p></br>
         {% endfor %}
       </form>
     </div>
@@ -154,7 +154,7 @@
         {% for i in range(1,num+1)%}
                     <p>
                     <span class="s29" id="fps{{i}}" type="text"> </span>
-                    <span class="s24"> <input type="submit" value="File Open" style="width: 100px;"></span>
+                    <span class="s24"> <button onclick="file_open{{i}}()" style="width: 100px;" id="file_open{{i}}"> File Open </button></span>
                     <span class="s25"> <button onclick="start{{i}}()" style="width: 100px;" id="start{{i}}"> Start </button> </span>
                     <span class="s26"> <button onclick="stop{{i}}()" style="width: 100px;" id="stop{{i}}"> Stop</button> </span>
                     <span class="s27"> <button onclick="clear{{i}}()" style="width: 100px;" id="clear{{i}}"> Clear</button> </span></p></br>
@@ -179,9 +179,8 @@
             }
 
             function clear{{i}}(){
-                document.getElementById("fps{{i}}").innerHTML = ' '
-                document.getElementsByName("File_Path{{i}}").value=' ';
-                document.getElementsByName("Url{{i}}").value=' ';
+            webSocket{{i}}.close();
+            document.getElementById("fps{{i}}").innerHTML = ' '
 
             }
           {% endfor %}
@@ -202,17 +201,18 @@
             }
 
             function allstop(){
-            {% for i in range(1,num+1)%}
-                webSocket{{i}}.close();
-            {% endfor %}
+                {% for i in range(1,num+1)%}
+                    webSocket{{i}}.close();
+                {% endfor %}
             }
+
 
             function allequal{{i}}(){
             {% for i in range(1,num+1)%}
-                var text1 = document.getElementsByName("File_Path1");
-                var text2 =document.getElementsByName("Url1");
-                var text1{{i}}=document.getElementsByName("File_Path{{i}}");
-                var text2{{i}}=document.getElementsByName("Url{{i}}");
+                var text1 = document.getElementById("File_Path1");
+                var text2 =document.getElementById("Url1");
+                var text1{{i}}=document.getElementById("File_Path{{i}}");
+                var text2{{i}}=document.getElementById("Url{{i}}");
                 text1{{i}}.value=text1.value;
                 text2{{i}}.value=text2.value;
 
@@ -220,12 +220,14 @@
 
             }
 
+
             function allclear{{i}}(){
                 {% for i in range(1,num+1)%}
                 document.getElementById("fps{{i}}").innerHTML = ' ';
-                document.getElementsByName("File_Path{{i}}").value=' ';
-                document.getElementsByName("Url{{i}}").value=' ';
-
+                var text1{{i}}=document.getElementById("File_Path{{i}}");
+                var text2{{i}}=document.getElementById("Url{{i}}");
+                text1{{i}}.value=' ';
+                text2{{i}}.value=' ';
                 {% endfor %}
             }
 
