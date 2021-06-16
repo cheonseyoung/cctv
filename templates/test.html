@@ -143,8 +143,8 @@
         {% for i in range(1,num+1)%}
                     <p>
                     <span class="s21"> {{i}}th</span>
-                    <span class="s22"> <input type="text" name="File_Path{{i}}" size=50 value="{{arr[0]}}"></span>
-                    <span class="s23"> <input type="text" name="Url{{i}}" size=50 value="{{arr[1]}}"></span></p></br>
+                    <span class="s22"> <input type="text" name="File_Path{{i}}" id="File_Path{{i}}" size=50 value="{{arr[0]}}"></span>
+                    <span class="s23"> <input type="text" name="Url{{i}}" id="Url{{i}}" size=50 value="{{arr[1]}}"></span></p></br>
         {% endfor %}
       </form>
     </div>
@@ -180,8 +180,8 @@
 
             function clear{{i}}(){
                 document.getElementById("fps{{i}}").innerHTML = ' '
-                document.getElementsByName("File_Path{{i}}").value=' ';
-                document.getElementsByName("Url{{i}}").value=' ';
+                document.getElementById("File_Path{{i}}").value=' ';
+                document.getElementById("Url{{i}}").value=' ';
 
             }
           {% endfor %}
@@ -209,10 +209,10 @@
 
             function allequal{{i}}(){
             {% for i in range(1,num+1)%}
-                var text1 = document.getElementsByName("File_Path1");
-                var text2 =document.getElementsByName("Url1");
-                var text1{{i}}=document.getElementsByName("File_Path{{i}}");
-                var text2{{i}}=document.getElementsByName("Url{{i}}");
+                var text1 = document.getElementById("File_Path1");
+                var text2 =document.getElementById("Url1");
+                var text1{{i}}=document.getElementById("File_Path{{i}}");
+                var text2{{i}}=document.getElementById("Url{{i}}");
                 text1{{i}}.value=text1.value;
                 text2{{i}}.value=text2.value;
 
@@ -223,8 +223,8 @@
             function allclear{{i}}(){
                 {% for i in range(1,num+1)%}
                 document.getElementById("fps{{i}}").innerHTML = ' ';
-                document.getElementsByName("File_Path{{i}}").value=' ';
-                document.getElementsByName("Url{{i}}").value=' ';
+                document.getElementById("File_Path{{i}}").value="";
+                document.getElementById("Url{{i}}").value="";
 
                 {% endfor %}
             }
