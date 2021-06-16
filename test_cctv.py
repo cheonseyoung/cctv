@@ -27,12 +27,12 @@ def value():
 ##############################################################################
 @app.route('/submit_button', methods=['POST'])
 def methodd(num_list=[]):
-    print('11111')
     new_file_path = ''
     new_url = ''
 
     arr=[[0,0]]
     get_value = value()
+
     if request.method == 'POST':
         for i in range(1,n+1):
             file_path = request.form['File_Path'+str(i)]
@@ -51,7 +51,7 @@ def methodd(num_list=[]):
             for i in range(n):
                 f.write("%d th,%s,%s\n" % (i, arr[i][0], arr[i][1]))
             f.write("%s,%s,%s\n" % ('update_file_info', new_file_path, new_url))
-
+    print(arr)
 
     return render_template('cctv_submit.html',num=n,arr=arr)
 
